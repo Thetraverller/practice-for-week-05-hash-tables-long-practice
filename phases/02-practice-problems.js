@@ -59,26 +59,95 @@ function commonElements(arr1, arr2) {
 
 }
 
-console.log(anagrams('elvis', 'lives'));    // => true
-console.log(anagrams('coding', 'rocks'));   // => false
+// console.log(anagrams('elvis', 'lives'));    // => true
+// console.log(anagrams('coding', 'rocks'));   // => false
 
 function commonElements(arr1, arr2) {
   // Your code here
+  let first = {}
+  let second = {};
+  let common = [];
+
+  arr1.forEach(
+    number => {
+      first[number] = 1
+    }
+  );
+  arr2.forEach(
+    number => {
+      second[number] = 1
+    }
+  );
+
+  for (number in first) {
+    if (second[number]) {
+      common.push(Number(number));
+    }
+  }
+
+  return common;
 }
+
+// console.log(commonElements([1,2,3], [3,4,5]));    // => [3]
+// console.log(commonElements([2,4,6], [5,4,3,2,1]));    // => [2,4]
 
 
 function duplicate(arr) {
   // Your code here
+  let obj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+    if (obj[num]) {
+      return num;
+    } else {
+      obj[num] = 1;
+    }
+  }
+  return obj
 }
+
+// console.log(duplicate([2,2,1]));         // => 2
+// console.log(duplicate([7,2,4,9,5,4,8])); // => 4
 
 
 function twoSum(nums, target) {
   // Your code here
-}
+  let numsSet = new Set(nums);
 
+  for (let num of numsSet) {
+    let factor = target - num;
+
+    if ( numsSet.has(factor) && factor !== num ) {
+      return true;
+    }
+  };
+
+  return false;
+};
+
+console.log(twoSum([2, 7, 11, 15], 22)); // => true
+console.log(twoSum([3, 4, 5], 6));      // => false
 
 function wordPattern(pattern, strings) {
   // Your code here
+  const model = {};
+  const assigned = new Set()
+
+  for (let i = 0; i < strings.length; i++) {
+    let str = strings[i];
+    let key = pattern[i];
+
+    if ( !model[key] && !assigned.has(str) ) {
+      model[key] = str;
+      assigned.add(str);
+    } else if (model[key] !== str) {
+      return false;
+    }
+  }
+
+  return
 }
 
 
