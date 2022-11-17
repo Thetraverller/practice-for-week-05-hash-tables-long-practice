@@ -147,7 +147,7 @@ function wordPattern(pattern, strings) {
     }
   }
 
-  return
+  return true;
 }
 
 
